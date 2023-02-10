@@ -24,22 +24,13 @@ app.get("/", (req, res) => {
   res.json({ info: "Demo app for sqlite3" });
 });
 
-app.get("/login/:username/:password", db.getUserById)
+app.get("/login/:username/:password", db.login)
+app.get("/login/:username/:password", db.getHighScore)
+app.put("/login/:username/:password", db.changePassword)
 
 // ------ FILL IN BELOW -------
 // Write endpoints that allow a client to:
 
-// Get all users
-app.get("/users", db.getAllUsers)
-// Create a new user
-app.get("/create/:id/:name",
-  db.createUser)
-// Update a user's name, given an idi
-
-app.get("/update/:name/:id", db.updateUser);
-// Delete a user by id
-app.get("/delete/:id", db.deleteUserById);
-//#endregion Database Routes
 
 //-----------------------------
 //#region Server
