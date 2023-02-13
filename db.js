@@ -25,12 +25,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login/:username/:password", db.login)
-app.get("/login/:username/:password", db.getHighScore)
-app.put("/login/:username/:password", db.changePassword)
+app.get("/highscore/:username", db.getHighScore)
+app.put("/change/:username/:password/:newpassword", db.changePassword)
 
 // ------ FILL IN BELOW -------
 // Write endpoints that allow a client to:
-
 
 //-----------------------------
 //#region Server
