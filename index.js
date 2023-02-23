@@ -1,6 +1,6 @@
 const path = require("path");
 const sqlite = require("sqlite3").verbose();
-const dbFile = path.join(__dirname, "foo.db");
+const dbFile = path.join(__dirname, "database.db");
 const db = new sqlite.Database(dbFile, (error) => {
   if (error) return console.error(error.message);
   console.log(`Connected to database ${dbFile}`);
@@ -10,7 +10,7 @@ const login = (request, response) => {
     // Parse the id to generate a SQLite query
     const username = request.params.username;
     const password = request.params.password;
-    const query = `SELECT * FROM user WHERE username = ?`;
+    const query = `SELECT * FROM Player WHERE username = ?`;
     db.get(query, [username], (error, result) => {
       if (error) {
         console.error(error.message);
@@ -35,7 +35,7 @@ const login = (request, response) => {
   const getHighScore = (request, response) => {
     // Parse the id to generate a SQLite query
     const username = request.params.username;
-    const query = `SELECT highscore FROM user WHERE username = ?`;
+    const query = `SELECT highscore FROM Player WHERE username = ?`;
     db.get(query, [username], (error, result) => {
       if (error) {
         console.error(error.message);
@@ -55,7 +55,7 @@ const login = (request, response) => {
     const username = request.params.username;
     const password = request.params.password;
     const newpassword = request.params.newpassword;
-    const query = `UPDATE user SET password = ? WHERE username = ? and password = ?`;
+    const query = `UPDATE Player SET password = ? WHERE username = ? and password = ?`;
     db.get(query, [newpassword, username, password], (error, result) => {
       if (error) {
         console.error(error.message);
